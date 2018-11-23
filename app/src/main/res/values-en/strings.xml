@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BowlingStats</string>
+    <string name="cancle">Cancle</string>
+    <string name="create">Create</string>
+    <string name="name_of_bowler">Name of Bowler</string>
+    <string name="title_activity_create_bowler">Create a new Bowler</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="name_is_mandatory">Please enter a name</string>
+    <string name="name_is_taken">This name is already taken</string>
+</resources>
