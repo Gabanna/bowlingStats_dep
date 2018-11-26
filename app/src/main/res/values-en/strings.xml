@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">BowlingStats</string>
     <string name="cancle">Cancle</string>
+    <string name="title_activity_session">Session</string>
     <string name="create">Create</string>
     <string name="name_of_bowler">Name of Bowler</string>
     <string name="title_activity_create_bowler">Create a new Bowler</string>
@@ -10,4 +11,10 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="name_is_mandatory">Please enter a name</string>
     <string name="name_is_taken">This name is already taken</string>
+    <string name="deleteBowler">Delete bowler</string>
+    <string name="doDeleteBowler">Do you want to delete the bowler %s?</string>
+    <string name="wasDeleted">%s was deleted</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="bowlers">Bowler</string>
 </resources>

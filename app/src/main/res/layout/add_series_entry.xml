@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+
+    <Spinner
+        android:id="@+id/bowlers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/score"
+        android:layout_width="fill_parent"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

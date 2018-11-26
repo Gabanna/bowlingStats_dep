@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">BowlingStats</string>
     <string name="title_activity_create_bowler">Erstelle einen neuen Bowler</string>
+    <string name="title_activity_session">Sitzung</string>
     <string name="create">Erstellen</string>
     <string name="title_notifications">Benachrichtigungen</string>
     <string name="name_of_bowler">Name des Bowlers</string>
@@ -10,4 +11,10 @@
     <string name="cancle">Abbrechen</string>
     <string name="name_is_mandatory">Bitte geben Sie einen Namen ein</string>
     <string name="name_is_taken">Der Name ist bereits vergeben</string>
+    <string name="deleteBowler">Bowler löschen</string>
+    <string name="doDeleteBowler">Möchten Sie den Bowler %s löschen?</string>
+    <string name="wasDeleted">%s wurde gelöscht</string>
+    <string name="yes">ja</string>
+    <string name="no">nein</string>
+    <string name="bowlers">Bowler</string>
 </resources>

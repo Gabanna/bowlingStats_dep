@@ -21,11 +21,19 @@
         <activity
             android:name=".CreateBowler"
             android:label="@string/title_activity_create_bowler"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".BowlersActivity"
             android:label="@string/title_activity_bowlers"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SessionActivity"
+            android:label="@string/title_activity_session"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SessionDetailActivity"
+            android:label="@string/title_activity_session_detail"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

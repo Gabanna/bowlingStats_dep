@@ -1,104 +1,100 @@
 package de.rgse.bowlingstats;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
-import com.google.gson.Gson;
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import de.rgse.bowlingstats.adapters.BowlersAdapter;
 import de.rgse.bowlingstats.model.Bowler;
-import de.rgse.bowlingstats.persistence.Database;
+import de.rgse.bowlingstats.tasks.Callback;
+import de.rgse.bowlingstats.tasks.DeleteBowlerTask;
+import de.rgse.bowlingstats.tasks.LoadBowlersTask;
 
 import static de.rgse.bowlingstats.CreateBowler.CREATE_BOWLER_REQUEST_CODE;
 
-public class BowlersActivity extends AppCompatActivity {
+public class BowlersActivity extends ToolbarActivity {
 
     private ListView bowlersView;
-    private List<String> bowlers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadBowlers();
         super.onCreate(savedInstanceState);
-
-        new LoadBowlersTask().execute();
-
         setContentView(R.layout.activity_bowlers);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        createFab().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCreateBowler();
             }
         });
 
-        bowlersView = (ListView) findViewById(R.id.bowlersView);
-        updateList();
+        bowlersView = findViewById(R.id.bowlersView);
+        updateList(new ArrayList<Bowler>());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == CREATE_BOWLER_REQUEST_CODE) {
-                handleNewBowler(data);
+                loadBowlers();
             }
         }
     }
 
-    private void handleNewBowler(Intent data) {
-        Bowler bowler = new Gson().fromJson(data.getData().toString(), Bowler.class);
-        this.bowlers.add(bowler.getName());
-        updateList();
+    private void deleteBowler(final Bowler bowlerToDelete) {
+        DeleteBowlerTask.deleteBowler(bowlerToDelete, getApplicationContext(), new Callback<Void>() {
+            @Override
+            public void call(Void voids) {
+                loadBowlers();
+                Snackbar.make(bowlersView, String.format(getResources().getString(R.string.wasDeleted), bowlerToDelete.getName()), Snackbar.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadBowlers() {
+        LoadBowlersTask.loadBowlers(getApplicationContext(), new Callback<List<Bowler>>() {
+            @Override
+            public void call(List<Bowler> arguments) {
+                updateList(arguments);
+            }
+        });
+    }
+
+    private void updateList(List<Bowler> bowlers) {
+        BowlersAdapter adapter = new BowlersAdapter(this, bowlers) {
+            @Override
+            public void onDelete(Bowler bowler) {
+                deleteBowler(bowler);
+            }
+        };
+        bowlersView.setAdapter(adapter);
+    }
+
+    private FloatingActionButton createFab() {
+        Drawable yourDrawable = MaterialDrawableBuilder.with(getApplicationContext()) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.ACCOUNT_PLUS) // provide an icon
+                .setToActionbarSize() // set the icon size
+                .setColor(Color.WHITE)
+                .build(); // Finally call build
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setImageDrawable(yourDrawable);
+        return fab;
     }
 
     private void openCreateBowler() {
         startActivityForResult(new Intent(getApplicationContext(), CreateBowler.class), CREATE_BOWLER_REQUEST_CODE);
     }
-
-    private class LoadBowlersTask extends AsyncTask<Void, Void, List<String>> {
-
-        @Override
-        protected void onPostExecute(List<String> strings) {
-            bowlers.clear();
-            bowlers.addAll(strings);
-            updateList();
-        }
-
-        @Override
-        protected List<String> doInBackground(Void... voids) {
-            List<Bowler> bowlers = Database.getInstance(getApplicationContext()).bowlerDao().getBowlers();
-            List<String> result = new ArrayList<>();
-
-            for (Bowler bowler : bowlers) {
-                result.add(bowler.getName());
-            }
-
-            return result;
-        }
-    }
-
-    private void updateList() {
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bowlers);
-        bowlersView.setAdapter(adapter);
-    }
-
 }
