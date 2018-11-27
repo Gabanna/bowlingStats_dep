@@ -22,10 +22,10 @@ public class SeriesEntry {
     private Date dateTime;
     private int value;
 
-    public SeriesEntry(String bowlerId, int value) {
+    public SeriesEntry(String bowlerId, int value, Date dateTime) {
         this.id = UUID.randomUUID().toString();
         this.bowlerId = bowlerId;
-        this.dateTime = new Date();
+        this.dateTime = dateTime;
         this.value = value;
     }
 

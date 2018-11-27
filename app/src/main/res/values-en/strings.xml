@@ -17,4 +17,5 @@
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="bowlers">Bowler</string>
+    <string name="score">Score</string>
 </resources>

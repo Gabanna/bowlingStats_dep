@@ -16,6 +16,7 @@ public class ToolbarActivity extends AppCompatActivity {
                 .with(this)
                 .setDefaultColor(Color.WHITE)
                 .inflate(R.menu.navigation, menu);
+
         return true;
     }
 
@@ -23,10 +24,14 @@ public class ToolbarActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_bowlers:
-                openBowlers();
+                if(!(BowlersActivity.class.isInstance(this))) {
+                    openBowlers();
+                }
                 break;
             case R.id.navigation_series:
-                openSeriesList();
+                if(!(SeriesListActivity.class.isInstance(this))) {
+                    openSeriesList();
+                }
                 break;
         }
         return true;

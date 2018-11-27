@@ -19,6 +19,9 @@ public interface BowlerDao {
     @Query("SELECT * FROM Bowler where id = :id limit 1")
     Bowler getBowlerById(String id);
 
+    @Query("SELECT * FROM Bowler where name = :name limit 1")
+    Bowler getBowlerByName(String name);
+
     @Insert
     void insert(Bowler bowler);
 

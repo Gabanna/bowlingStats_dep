@@ -23,8 +23,8 @@ public class DeleteBowlerTask extends AsyncTask<Bowler, Void, Void> {
 
     @Override
     protected Void doInBackground(Bowler... bowlers) {
-        Bowler bowlerToDelete = bowlers[0];
-        Database.getInstance(context).bowlerDao().delete(bowlerToDelete);
+        Bowler bowler = bowlers[0];
+        Database.getInstance(context).bowlerDao().delete(bowler);
         return null;
     }
 

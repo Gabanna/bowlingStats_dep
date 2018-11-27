@@ -29,7 +29,15 @@
         <activity
             android:name=".SeriesListActivity"
             android:label="@string/title_activity_bowlers"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SeriesActivity"
+            android:label="@string/title_activity_series_"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateSeriesActivity"
+            android:label="@string/title_activity_create_series"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
