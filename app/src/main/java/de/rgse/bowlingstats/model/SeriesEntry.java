@@ -6,23 +6,26 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Entity(
-        foreignKeys = @ForeignKey(entity = Series.class, parentColumns = "id", childColumns = "seriesId"),
-        indices = @Index("seriesId")
+        foreignKeys = @ForeignKey(entity = Bowler.class, parentColumns = "id", childColumns = "bowlerId"),
+        indices = {@Index("bowlerId"), @Index("dateTime")}
 )
 public class SeriesEntry {
 
     @PrimaryKey
     @NonNull
     private String id;
-    private String seriesId;
+    private String bowlerId;
+    private Date dateTime;
     private int value;
 
-    public SeriesEntry(String seriesId, int value) {
+    public SeriesEntry(String bowlerId, int value) {
         this.id = UUID.randomUUID().toString();
-        this.seriesId = seriesId;
+        this.bowlerId = bowlerId;
+        this.dateTime = new Date();
         this.value = value;
     }
 
@@ -34,19 +37,27 @@ public class SeriesEntry {
         this.id = id;
     }
 
-    public String getSeriesId() {
-        return seriesId;
-    }
-
-    public void setSeriesId(String seriesId) {
-        this.seriesId = seriesId;
-    }
-
     public int getValue() {
         return value;
     }
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public String getBowlerId() {
+        return bowlerId;
+    }
+
+    public void setBowlerId(String bowlerId) {
+        this.bowlerId = bowlerId;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 }

@@ -1,14 +1,12 @@
 package de.rgse.bowlingstats;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
@@ -18,7 +16,6 @@ import java.util.List;
 
 import de.rgse.bowlingstats.adapters.BowlersAdapter;
 import de.rgse.bowlingstats.model.Bowler;
-import de.rgse.bowlingstats.tasks.Callback;
 import de.rgse.bowlingstats.tasks.DeleteBowlerTask;
 import de.rgse.bowlingstats.tasks.LoadBowlersTask;
 
@@ -34,15 +31,21 @@ public class BowlersActivity extends ToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bowlers);
 
-        createFab().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCreateBowler();
+        createFab().setOnClickListener(view -> openCreateBowler());
+        bowlersView = findViewById(R.id.bowlersView);
+        updateList(new ArrayList<>());
+
+        bowlersView.setOnItemClickListener((parent, view, position, id) -> {
+            final Bowler bowler = (Bowler) bowlersView.getAdapter().getItem((int) view.getTag());
+
+            if (bowler != null) {
+                new AlertDialog.Builder(BowlersActivity.this)
+                        .setTitle(getResources().getString(R.string.deleteBowler))
+                        .setMessage(String.format(getResources().getString(R.string.doDeleteBowler), bowler.getName()))
+                        .setPositiveButton(R.string.yes, (dialog, whichButton) -> deleteBowler(bowler))
+                        .setNegativeButton(R.string.no, null).show();
             }
         });
-
-        bowlersView = findViewById(R.id.bowlersView);
-        updateList(new ArrayList<Bowler>());
     }
 
     @Override
@@ -55,31 +58,18 @@ public class BowlersActivity extends ToolbarActivity {
     }
 
     private void deleteBowler(final Bowler bowlerToDelete) {
-        DeleteBowlerTask.deleteBowler(bowlerToDelete, getApplicationContext(), new Callback<Void>() {
-            @Override
-            public void call(Void voids) {
-                loadBowlers();
-                Snackbar.make(bowlersView, String.format(getResources().getString(R.string.wasDeleted), bowlerToDelete.getName()), Snackbar.LENGTH_SHORT).show();
-            }
+        DeleteBowlerTask.deleteBowler(bowlerToDelete, getApplicationContext(), voids -> {
+            loadBowlers();
+            Snackbar.make(bowlersView, String.format(getResources().getString(R.string.wasDeleted), bowlerToDelete.getName()), Snackbar.LENGTH_LONG).show();
         });
     }
 
     private void loadBowlers() {
-        LoadBowlersTask.loadBowlers(getApplicationContext(), new Callback<List<Bowler>>() {
-            @Override
-            public void call(List<Bowler> arguments) {
-                updateList(arguments);
-            }
-        });
+        LoadBowlersTask.loadBowlers(getApplicationContext(), this::updateList);
     }
 
     private void updateList(List<Bowler> bowlers) {
-        BowlersAdapter adapter = new BowlersAdapter(this, bowlers) {
-            @Override
-            public void onDelete(Bowler bowler) {
-                deleteBowler(bowler);
-            }
-        };
+        BowlersAdapter adapter = new BowlersAdapter(this, bowlers);
         bowlersView.setAdapter(adapter);
     }
 

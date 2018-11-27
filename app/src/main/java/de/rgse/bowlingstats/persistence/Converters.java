@@ -3,7 +3,6 @@ package de.rgse.bowlingstats.persistence;
 import android.arch.persistence.room.TypeConverter;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Date;
 
 public class Converters {
@@ -19,7 +18,7 @@ public class Converters {
     public static Date timestampToDate(String timestamp) {
         Date result = null;
         try {
-            return timestamp == null ? null : DATE_FORMAT.parse(timestamp);
+            result = timestamp == null ? null : DATE_FORMAT.parse(timestamp);
         } catch (Exception e) {
             e.printStackTrace();
         }

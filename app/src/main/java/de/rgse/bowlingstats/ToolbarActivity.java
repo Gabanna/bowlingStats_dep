@@ -22,11 +22,11 @@ public class ToolbarActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.navigation_dashboard:
+            case R.id.navigation_bowlers:
                 openBowlers();
                 break;
             case R.id.navigation_series:
-                openSeries();
+                openSeriesList();
                 break;
         }
         return true;
@@ -35,8 +35,8 @@ public class ToolbarActivity extends AppCompatActivity {
     private void openBowlers() {
         startActivity(new Intent(this, BowlersActivity.class));
     }
-
-    private void openSeries() {
-        startActivity(new Intent(this, SessionActivity.class));
+    private void openSeriesList() {
+        startActivity(new Intent(this, SeriesListActivity.class));
     }
+
 }

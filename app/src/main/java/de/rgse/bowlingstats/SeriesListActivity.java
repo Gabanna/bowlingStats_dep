@@ -2,11 +2,11 @@ package de.rgse.bowlingstats;
 
 import android.os.Bundle;
 
-public class MainActivity extends ToolbarActivity {
+public class SeriesListActivity extends ToolbarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_series_list);
     }
 }

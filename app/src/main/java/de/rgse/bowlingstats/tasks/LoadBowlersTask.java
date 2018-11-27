@@ -29,7 +29,7 @@ public class LoadBowlersTask extends AsyncTask<Void, Void, List<Bowler>> {
         return Database.getInstance(context).bowlerDao().getBowlers();
     }
 
-    public static final void loadBowlers(Context context, Callback<List<Bowler>> callback) {
+    public static void loadBowlers(Context context, Callback<List<Bowler>> callback) {
         new LoadBowlersTask(context, callback).execute();
     }
 }

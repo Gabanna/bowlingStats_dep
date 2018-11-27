@@ -9,13 +9,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/statistics_menu"
+        android:id="@+id/navigation_statistics"
         app:showAsAction="always"
         app:materialIcon="chart_bar_stacked"
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_bowlers"
         app:showAsAction="always"
         app:materialIcon="account_group"
         android:title="@string/bowlers" />

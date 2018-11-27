@@ -3,12 +3,10 @@ package de.rgse.bowlingstats.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import java.util.List;
-
 import de.rgse.bowlingstats.model.Bowler;
 import de.rgse.bowlingstats.persistence.Database;
 
-public class DeleteBowlerTask  extends AsyncTask<Bowler, Void, Void> {
+public class DeleteBowlerTask extends AsyncTask<Bowler, Void, Void> {
 
     private Context context;
     private Callback<Void> callback;
@@ -30,7 +28,7 @@ public class DeleteBowlerTask  extends AsyncTask<Bowler, Void, Void> {
         return null;
     }
 
-    public static final void deleteBowler(Bowler bowlerToDelete, Context context, Callback<Void> callback) {
+    public static void deleteBowler(Bowler bowlerToDelete, Context context, Callback<Void> callback) {
         new DeleteBowlerTask(context, callback).execute(bowlerToDelete);
     }
 }
