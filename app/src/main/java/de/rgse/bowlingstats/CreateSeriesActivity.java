@@ -1,6 +1,9 @@
 package de.rgse.bowlingstats;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +27,6 @@ import java.util.stream.Collectors;
 import de.rgse.bowlingstats.filter.InputFilterMinMax;
 import de.rgse.bowlingstats.model.Bowler;
 import de.rgse.bowlingstats.model.SeriesEntry;
-import de.rgse.bowlingstats.persistence.Database;
 import de.rgse.bowlingstats.tasks.CreateSeriesEntryTask;
 import de.rgse.bowlingstats.tasks.LoadBowlerByNameTask;
 import de.rgse.bowlingstats.tasks.LoadBowlersTask;
@@ -44,8 +46,6 @@ public class CreateSeriesActivity extends AppCompatActivity {
         loadBowlers();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_series);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         fromDateEtxt = findViewById(R.id.date);
 
@@ -74,29 +74,42 @@ public class CreateSeriesActivity extends AppCompatActivity {
 
     private void initButtons() {
         Button cancleBtn = findViewById(R.id.cancle_btn);
-        cancleBtn.setOnClickListener(v -> {
-            finish();
-        });
+        cancleBtn.setOnClickListener(v -> finish());
 
         Button createBtn = findViewById(R.id.create_btn);
-        createBtn.setOnClickListener(v -> {
-            LoadBowlerByNameTask.loadBowlerByName(getApplicationContext(), bowler -> {
-                try {
-                    int scoreToEnter = Integer.parseInt(score.getText().toString());
-                    Date date = dateFormatter.parse(fromDateEtxt.getText().toString());
-                    SeriesEntry entry = new SeriesEntry(bowler.getId(), scoreToEnter, date);
-                    CreateSeriesEntryTask.deleteBowler(entry, getApplicationContext(), voids -> {
-                        finishActivity(CREATE_SERIES_REQUEST_CODE);
-                    });
-                } catch (ParseException e) {
-                    Log.e(CreateSeriesActivity.class.getSimpleName(), "unable to parse input of fromDateEtxt", e);
-                }
-            });
+        createBtn.setOnClickListener(v -> loadBowlerByName());
+    }
+
+    private void loadBowlerByName() {
+        LoadBowlerByNameTask.loadBowlerByName(name, getApplicationContext(), bowler -> {
+            try {
+                int scoreToEnter = Integer.parseInt(score.getText().toString());
+                Date date = dateFormatter.parse(fromDateEtxt.getText().toString());
+                SeriesEntry entry = new SeriesEntry(bowler.getId(), scoreToEnter, date);
+                CreateSeriesEntryTask.createSeriesEntry(entry, getApplicationContext(), voids -> {
+                    Intent data = new Intent();
+                    data.setData(Uri.parse(fromDateEtxt.getText().toString()));
+                    setResult(Activity.RESULT_OK, data);
+                    finish();
+                });
+            } catch (ParseException e) {
+                Log.e(CreateSeriesActivity.class.getSimpleName(), "unable to parse input of fromDateEtxt", e);
+            }
         });
     }
 
     private void initDateEdit() {
         Calendar newCalendar = Calendar.getInstance();
+        String dataString = getIntent().getDataString();
+
+        if (dataString != null) {
+            try {
+                Date date = DateFormat.getDateInstance().parse(dataString);
+                newCalendar.setTime(date);
+            } catch (ParseException e) {
+                Log.e(CreateSeriesActivity.class.getSimpleName(), "unable to parse data from intent", e);
+            }
+        }
 
         fromDateEtxt.setInputType(InputType.TYPE_NULL);
         fromDateEtxt.requestFocus();
@@ -112,7 +125,7 @@ public class CreateSeriesActivity extends AppCompatActivity {
     }
 
     private void updateSpinner(List<String> bowlerNames) {
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, bowlerNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bowlerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

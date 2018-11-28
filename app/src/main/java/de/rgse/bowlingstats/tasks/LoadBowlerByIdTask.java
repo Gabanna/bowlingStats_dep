@@ -6,13 +6,13 @@ import android.os.AsyncTask;
 import de.rgse.bowlingstats.model.Bowler;
 import de.rgse.bowlingstats.persistence.Database;
 
-public class LoadBowlerByNameTask extends AsyncTask<String, Void, Bowler> {
+public class LoadBowlerByIdTask extends AsyncTask<String, Void, Bowler> {
 
 
     private Context context;
     private Callback<Bowler> callback;
 
-    private LoadBowlerByNameTask(Context context, Callback<Bowler> callback) {
+    private LoadBowlerByIdTask(Context context, Callback<Bowler> callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -25,10 +25,10 @@ public class LoadBowlerByNameTask extends AsyncTask<String, Void, Bowler> {
     @Override
     protected Bowler doInBackground(String... voids) {
         String name = voids[0];
-        return Database.getInstance(context).bowlerDao().getBowlerByName(name);
+        return Database.getInstance(context).bowlerDao().getBowlerById(name);
     }
 
-    public static void loadBowlerByName(String name, Context context, Callback<Bowler> callback) {
-        new LoadBowlerByNameTask(context, callback).execute(name);
+    public static void loadBowlerById(String name, Context context, Callback<Bowler> callback) {
+        new LoadBowlerByIdTask(context, callback).execute(name);
     }
 }

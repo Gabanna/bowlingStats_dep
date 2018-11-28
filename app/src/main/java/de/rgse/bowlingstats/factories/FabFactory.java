@@ -13,8 +13,12 @@ import de.rgse.bowlingstats.R;
 public class FabFactory {
 
     public static FloatingActionButton createFab(Activity activity) {
+        return FabFactory.createFab(activity, MaterialDrawableBuilder.IconValue.ACCOUNT_PLUS);
+    }
+
+    public static FloatingActionButton createFab(Activity activity, MaterialDrawableBuilder.IconValue iconValue) {
         Drawable yourDrawable = MaterialDrawableBuilder.with(activity.getApplicationContext()) // provide a context
-                .setIcon(MaterialDrawableBuilder.IconValue.ACCOUNT_PLUS) // provide an icon
+                .setIcon(iconValue) // provide an icon
                 .setToActionbarSize() // set the icon size
                 .setColor(Color.WHITE)
                 .build(); // Finally call build

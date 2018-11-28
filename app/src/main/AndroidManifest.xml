@@ -33,11 +33,11 @@
         <activity
             android:name=".SeriesActivity"
             android:label="@string/title_activity_series_"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CreateSeriesActivity"
             android:label="@string/title_activity_create_series"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

@@ -1,11 +1,9 @@
 package de.rgse.bowlingstats;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.Nullable;
 import android.widget.ListView;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
@@ -32,20 +30,30 @@ public class SeriesListActivity extends ToolbarActivity {
         seriesView = findViewById(R.id.seriesView);
         updateList(new ArrayList<>());
 
-        FabFactory.createFab(this).setOnClickListener(v -> openCreateSeries());
+        FabFactory.createFab(this, MaterialDrawableBuilder.IconValue.COUNTER).setOnClickListener(v -> openCreateSeries());
 
         seriesView.setOnItemClickListener((parent, view, position, id) -> {
-            final Date dateTime = (Date) seriesView.getAdapter().getItem((int) view.getTag());
+            final Date date = (Date) seriesView.getAdapter().getItem((int) view.getTag());
 
-            if (dateTime != null) {
-                openSeries(dateTime);
+            if (date != null) {
+                openSeries(date);
             }
         });
     }
 
-    private void openSeries(Date dateTime) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 4) {
+            Intent intent = new Intent(getApplicationContext(), SeriesActivity.class);
+            intent.setData(Uri.parse(data.getDataString()));
+            startActivity(intent);
+        }
+    }
+
+    private void openSeries(Date date) {
         Intent intent = new Intent(getApplicationContext(), SeriesActivity.class);
-        intent.setData(Uri.parse(DateFormat.getDateTimeInstance().format(dateTime)));
+        intent.setData(Uri.parse(DateFormat.getDateInstance().format(date)));
         startActivity(intent);
     }
 
@@ -59,6 +67,6 @@ public class SeriesListActivity extends ToolbarActivity {
     }
 
     private void openCreateSeries() {
-        startActivity(new Intent(getApplicationContext(), CreateSeriesActivity.class));
+        startActivityForResult(new Intent(getApplicationContext(), CreateSeriesActivity.class), 4);
     }
 }

@@ -18,8 +18,8 @@ public interface SeriesDao {
     @Query("SELECT distinct dateTime FROM SeriesEntry")
     List<Date> getEntriyDates();
 
-    @Query("SELECT * FROM SeriesEntry where dateTime = :dateTime")
-    List<SeriesEntry> getEntriesByDate(Date dateTime);
+    @Query("SELECT * FROM SeriesEntry where dateTime between :from and :to")
+    List<SeriesEntry> getEntriesByDate(Date from, Date to);
 
     @Insert
     void insert(SeriesEntry entry);

@@ -10,7 +10,7 @@ import de.rgse.bowlingstats.model.SeriesEntry;
 import de.rgse.bowlingstats.persistence.daos.BowlerDao;
 import de.rgse.bowlingstats.persistence.daos.SeriesDao;
 
-@android.arch.persistence.room.Database(entities = {Bowler.class, SeriesEntry.class}, version = 4, exportSchema = false)
+@android.arch.persistence.room.Database(entities = {Bowler.class, SeriesEntry.class}, version = 1, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class Database extends RoomDatabase {
 

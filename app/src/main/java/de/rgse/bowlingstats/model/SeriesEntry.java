@@ -13,7 +13,7 @@ import java.util.UUID;
         foreignKeys = @ForeignKey(entity = Bowler.class, parentColumns = "id", childColumns = "bowlerId"),
         indices = {@Index("bowlerId"), @Index("dateTime")}
 )
-public class SeriesEntry {
+public class SeriesEntry implements Comparable<SeriesEntry> {
 
     @PrimaryKey
     @NonNull
@@ -59,5 +59,10 @@ public class SeriesEntry {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+    }
+
+    @Override
+    public int compareTo(SeriesEntry o) {
+        return dateTime.compareTo(o.dateTime);
     }
 }

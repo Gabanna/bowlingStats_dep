@@ -8,4 +8,9 @@
     tools:context=".SeriesActivity"
     tools:showIn="@layout/activity_series">
 
+    <ListView
+        android:id="@+id/serieEntriesView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </android.support.constraint.ConstraintLayout>

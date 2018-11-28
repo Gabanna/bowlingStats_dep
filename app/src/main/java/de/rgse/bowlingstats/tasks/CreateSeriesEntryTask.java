@@ -28,7 +28,7 @@ public class CreateSeriesEntryTask extends AsyncTask<SeriesEntry, Void, Void> {
         return null;
     }
 
-    public static void deleteBowler(SeriesEntry seriesToEnter, Context context, Callback<Void> callback) {
+    public static void createSeriesEntry(SeriesEntry seriesToEnter, Context context, Callback<Void> callback) {
         new CreateSeriesEntryTask(context, callback).execute(seriesToEnter);
     }
 }

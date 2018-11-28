@@ -9,6 +9,7 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 import de.rgse.bowlingstats.model.Bowler;
+import de.rgse.bowlingstats.model.BowlerStatistic;
 
 @Dao
 public interface BowlerDao {
@@ -21,6 +22,9 @@ public interface BowlerDao {
 
     @Query("SELECT * FROM Bowler where name = :name limit 1")
     Bowler getBowlerByName(String name);
+
+    @Query("SELECT b.name, avg(value) as average from Bowler b join SeriesEntry e on b.id = e.bowlerId where b.name = :bowlerId")
+    BowlerStatistic getStatistics(String bowlerId);
 
     @Insert
     void insert(Bowler bowler);

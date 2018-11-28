@@ -15,7 +15,7 @@ import de.rgse.bowlingstats.R;
 
 public class SeriesListAdapter extends ArrayAdapter<Date> {
 
-    private static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance();
+    private static final DateFormat DATE_FORMAT = DateFormat.getDateInstance();
 
     public SeriesListAdapter(Activity activity, List<Date> data) {
         super(activity, R.layout.series_list_item, data);
@@ -25,7 +25,7 @@ public class SeriesListAdapter extends ArrayAdapter<Date> {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.bowler_item, parent, false);
+            convertView = inflater.inflate(R.layout.series_item, parent, false);
             convertView.setTag(position);
         }
 

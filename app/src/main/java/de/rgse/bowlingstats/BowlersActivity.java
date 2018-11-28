@@ -13,6 +13,7 @@ import de.rgse.bowlingstats.adapters.BowlersAdapter;
 import de.rgse.bowlingstats.factories.FabFactory;
 import de.rgse.bowlingstats.model.Bowler;
 import de.rgse.bowlingstats.tasks.DeleteBowlerTask;
+import de.rgse.bowlingstats.tasks.LoadBowlerStatisticsTask;
 import de.rgse.bowlingstats.tasks.LoadBowlersTask;
 
 import static de.rgse.bowlingstats.CreateBowler.CREATE_BOWLER_REQUEST_CODE;
@@ -61,6 +62,9 @@ public class BowlersActivity extends ToolbarActivity {
     }
 
     private void loadBowlers() {
+        LoadBowlerStatisticsTask.loadBowlerStatistics("Ronny", getApplicationContext(), bs -> {
+            System.out.println(bs);
+        });
         LoadBowlersTask.loadBowlers(getApplicationContext(), this::updateList);
     }
 
