@@ -114,7 +114,6 @@ public class CreateSeriesActivity extends AppCompatActivity {
         }
 
         fromDateEtxt.setInputType(InputType.TYPE_NULL);
-        fromDateEtxt.requestFocus();
         fromDateEtxt.setText(dateFormatter.format(newCalendar.getTime()));
 
         DatePickerDialog fromDatePickerDialog = new DatePickerDialog(this, (view, year, monthOfYear, dayOfMonth) -> {
@@ -123,7 +122,11 @@ public class CreateSeriesActivity extends AppCompatActivity {
             fromDateEtxt.setText(dateFormatter.format(newDate.getTime()));
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
-        fromDateEtxt.setOnClickListener(v -> fromDatePickerDialog.show());
+        fromDateEtxt.setOnFocusChangeListener((view, hasFocus) -> {
+            if(hasFocus) {
+                fromDatePickerDialog.show();
+            }
+        });
     }
 
     private void updateSpinner(List<String> bowlerNames) {
