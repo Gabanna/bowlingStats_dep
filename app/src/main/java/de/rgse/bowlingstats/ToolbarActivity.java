@@ -24,22 +24,32 @@ public class ToolbarActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_bowlers:
-                if(!(BowlersActivity.class.isInstance(this))) {
+                if (!(BowlersActivity.class.isInstance(this))) {
                     openBowlers();
                 }
                 break;
             case R.id.navigation_series:
-                if(!(SeriesListActivity.class.isInstance(this))) {
+                if (!(SeriesListActivity.class.isInstance(this))) {
                     openSeriesList();
+                }
+                break;
+            case R.id.navigation_statistics:
+                if (!(StatisticBowlerActivity.class.isInstance(this))) {
+                    openStatistics();
                 }
                 break;
         }
         return true;
     }
 
+    private void openStatistics() {
+        startActivity(new Intent(this, StatisticBowlerActivity.class));
+    }
+
     private void openBowlers() {
         startActivity(new Intent(this, BowlersActivity.class));
     }
+
     private void openSeriesList() {
         startActivity(new Intent(this, SeriesListActivity.class));
     }

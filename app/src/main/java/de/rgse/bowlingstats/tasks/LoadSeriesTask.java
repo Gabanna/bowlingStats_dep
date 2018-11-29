@@ -3,6 +3,8 @@ package de.rgse.bowlingstats.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +29,10 @@ public class LoadSeriesTask extends AsyncTask<Void, Void, List<Date>> {
 
     @Override
     protected List<Date> doInBackground(Void... voids) {
-        return Database.getInstance(context).seriesDao().getEntriyDates();
+        List<Date> entriyDates = Database.getInstance(context).seriesDao().getEntriyDates();
+        Collections.sort(entriyDates);
+        Collections.reverse(entriyDates);
+        return entriyDates;
     }
 
     public static void loadSeries(Context context, Callback<List<Date>> callback) {

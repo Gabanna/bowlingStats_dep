@@ -46,8 +46,10 @@ public class SeriesListActivity extends ToolbarActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 4) {
             Intent intent = new Intent(getApplicationContext(), SeriesActivity.class);
-            intent.setData(Uri.parse(data.getDataString()));
-            startActivity(intent);
+            if(intent != null) {
+                intent.setData(Uri.parse(data.getDataString()));
+                startActivity(intent);
+            }
         }
     }
 

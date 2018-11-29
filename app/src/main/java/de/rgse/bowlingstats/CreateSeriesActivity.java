@@ -55,6 +55,8 @@ public class CreateSeriesActivity extends AppCompatActivity {
 
         score = findViewById(R.id.score);
         score.setFilters(new InputFilter[]{new InputFilterMinMax(0, 300)});
+        score.requestFocus();
+
     }
 
     private void initSpinner() {

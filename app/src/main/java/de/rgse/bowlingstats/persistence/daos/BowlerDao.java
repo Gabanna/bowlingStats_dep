@@ -23,7 +23,7 @@ public interface BowlerDao {
     @Query("SELECT * FROM Bowler where name = :name limit 1")
     Bowler getBowlerByName(String name);
 
-    @Query("SELECT b.name, avg(value) as average, max(value) as max, dateTime from Bowler b join SeriesEntry e on b.id = e.bowlerId where b.name = :bowlerId group by dateTime")
+    @Query("SELECT b.name, avg(value) as average, max(value) as max, count(*) as count, dateTime from Bowler b join SeriesEntry e on b.id = e.bowlerId where b.name = :bowlerId group by dateTime")
     List<BowlerStatistic> getStatistics(String bowlerId);
 
     @Insert

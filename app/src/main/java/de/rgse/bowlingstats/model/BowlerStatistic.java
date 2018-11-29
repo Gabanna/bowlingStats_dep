@@ -5,9 +5,10 @@ import java.util.Date;
 public class BowlerStatistic {
 
     private String name;
-    private Date dateTime;
     private float average;
     private int max;
+    private int count;
+    private Date dateTime;
 
     public String getName() {
         return name;
@@ -39,5 +40,13 @@ public class BowlerStatistic {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

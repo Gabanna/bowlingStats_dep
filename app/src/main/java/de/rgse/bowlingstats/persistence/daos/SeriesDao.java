@@ -15,7 +15,7 @@ import de.rgse.bowlingstats.model.SeriesEntry;
 @Dao
 public interface SeriesDao {
 
-    @Query("SELECT distinct dateTime FROM SeriesEntry")
+    @Query("SELECT distinct dateTime FROM SeriesEntry order by dateTime")
     List<Date> getEntriyDates();
 
     @Query("SELECT * FROM SeriesEntry where dateTime between :from and :to")

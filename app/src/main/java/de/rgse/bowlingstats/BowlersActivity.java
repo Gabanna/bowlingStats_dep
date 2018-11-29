@@ -62,9 +62,6 @@ public class BowlersActivity extends ToolbarActivity {
     }
 
     private void loadBowlers() {
-        LoadBowlerStatisticsTask.loadBowlerStatistics("Ronny", getApplicationContext(), bs -> {
-            System.out.println(bs);
-        });
         LoadBowlersTask.loadBowlers(getApplicationContext(), this::updateList);
     }
 
