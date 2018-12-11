@@ -20,6 +20,7 @@ public class InputFilterMinMax implements InputFilter {
             if (isInRange(min, max, input))
                 return null;
         } catch (NumberFormatException nfe) {
+            //ignored
         }
         return "";
     }

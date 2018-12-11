@@ -18,4 +18,7 @@
     <string name="no">no</string>
     <string name="bowlers">Bowler</string>
     <string name="score">Score</string>
+    <string name="label_import">import</string>
+    <string name="show_scores">Show Scores</string>
+    <string name="title_activity_bowlers">Manage Bowlers</string>
 </resources>

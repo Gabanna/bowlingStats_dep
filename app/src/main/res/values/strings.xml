@@ -1,15 +1,11 @@
 <resources>
     <string name="app_name">BowlingStats</string>
-    <string name="title_home">Home</string>
-    <string name="title_activity_session">Sitzung</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="create">Erstellen</string>
     <string name="cancle">Abbrechen</string>
     <string name="name_of_bowler">Name des Bowlers</string>
     <string name="title_activity_create_bowler">Erstelle einen neuen Bowler</string>
-    <string name="title_notifications">Benachrichtigungen</string>
     <string name="name_is_mandatory">Bitte geben Sie einen Namen ein</string>
-    <string name="title_activity_bowlers">BowlersActivity</string>
+    <string name="title_activity_bowlers">Bowler verwalten</string>
     <string name="name_is_taken">Der Name ist bereits vergeben</string>
     <string name="deleteBowler">Bowler löschen</string>
     <string name="doDeleteBowler">Möchten Sie den Bowler %s löschen?</string>
@@ -17,9 +13,13 @@
     <string name="yes">ja</string>
     <string name="no">nein</string>
     <string name="bowlers">Bowler</string>
-    <string name="title_activity_session_detail">SessionDetailActivity</string>
-    <string name="title_activity_series_">Series_Activity</string>
-    <string name="title_activity_create_series">CreateSeriesActivity</string>
     <string name="score">Ergebnis</string>
-    <string name="title_activity_statistic_bowler">StatisticBowlerActivity</string>
+    <string name="label_import">Importieren</string>
+    <string name="title_activity_edit_series">EditSeriesActivity</string>
+    <string name="scores">Ergebnisse</string>
+    <string name="statistics">Statistiken</string>
+    <string name="title_activity_series">Serien</string>
+    <string name="title_activity_create_series">Serie erstellen</string>
+    <string name="title_activity_statistic_bowler">Statistiken</string>
+    <string name="title_activity_series_list">Serien</string>
 </resources>

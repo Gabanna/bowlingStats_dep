@@ -16,7 +16,7 @@ public class Bowler {
 
     @PrimaryKey
     @NonNull
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     private String name;
 
@@ -24,15 +24,15 @@ public class Bowler {
 
     @Ignore
     public Bowler(String name) {
-        this.id = UUID.randomUUID().toString();
         this.name = name;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -49,7 +49,7 @@ public class Bowler {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bowler bowler = (Bowler) o;
-        return id == bowler.id &&
+        return id.equals(bowler.id ) &&
                 Objects.equals(name, bowler.name);
     }
 
@@ -59,7 +59,7 @@ public class Bowler {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
         return name;
     }
 }

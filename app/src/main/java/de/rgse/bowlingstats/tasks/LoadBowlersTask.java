@@ -1,35 +1,26 @@
 package de.rgse.bowlingstats.tasks;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import java.util.List;
 
 import de.rgse.bowlingstats.model.Bowler;
 import de.rgse.bowlingstats.persistence.Database;
 
-public class LoadBowlersTask extends AsyncTask<Void, Void, List<Bowler>> {
+public class LoadBowlersTask extends ContextAwareTask<Void, List<Bowler>> {
 
 
-    private Context context;
-    private Callback<List<Bowler>> callback;
-
-    private LoadBowlersTask(Context context, Callback<List<Bowler>> callback) {
-        this.context = context;
-        this.callback = callback;
+    private LoadBowlersTask(Callback<List<Bowler>> callback) {
+        super(callback);
     }
 
     @Override
-    protected void onPostExecute(List<Bowler> bowlers) {
-        callback.call(bowlers);
-    }
-
-    @Override
-    protected List<Bowler> doInBackground(Void... voids) {
-        return Database.getInstance(context).bowlerDao().getBowlers();
+    protected List<Bowler> doInBackground(ContextAwareTaskParam<Void>[] voids) {
+        ContextAwareTaskParam<Void> v = voids[0];
+        return Database.getInstance(v.getContext()).bowlerDao().getBowlers();
     }
 
     public static void loadBowlers(Context context, Callback<List<Bowler>> callback) {
-        new LoadBowlersTask(context, callback).execute();
+        new LoadBowlersTask(callback).execute(new ContextAwareTaskParam<>(context, null));
     }
 }

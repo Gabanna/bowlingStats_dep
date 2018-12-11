@@ -4,20 +4,26 @@
 
     <item
         android:id="@+id/navigation_series"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         app:materialIcon="bowling"
-        android:title="@string/title_home" />
+        android:title="@string/title_activity_series_list" />
 
     <item
         android:id="@+id/navigation_statistics"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         app:materialIcon="chart_bar_stacked"
-        android:title="@string/title_home" />
+        android:title="@string/title_activity_statistic_bowler" />
 
     <item
         android:id="@+id/navigation_bowlers"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         app:materialIcon="account_group"
         android:title="@string/bowlers" />
+
+    <item
+        android:id="@+id/navigation_import"
+        app:showAsAction="never"
+        app:materialIcon="import_icon"
+        android:title="@string/label_import" />
 
 </menu>

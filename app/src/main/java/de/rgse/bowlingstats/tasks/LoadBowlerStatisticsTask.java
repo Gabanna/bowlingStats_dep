@@ -1,34 +1,24 @@
 package de.rgse.bowlingstats.tasks;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import de.rgse.bowlingstats.model.BowlerStatisticWrapper;
 import de.rgse.bowlingstats.persistence.Database;
 
-public class LoadBowlerStatisticsTask extends AsyncTask<String, Void, BowlerStatisticWrapper> {
+public class LoadBowlerStatisticsTask extends ContextAwareTask<String, BowlerStatisticWrapper> {
 
 
-    private Context context;
-    private Callback<BowlerStatisticWrapper> callback;
-
-    private LoadBowlerStatisticsTask(Context context, Callback<BowlerStatisticWrapper> callback) {
-        this.context = context;
-        this.callback = callback;
+    private LoadBowlerStatisticsTask(Callback<BowlerStatisticWrapper> callback) {
+        super(callback);
     }
 
     @Override
-    protected void onPostExecute(BowlerStatisticWrapper bowler) {
-        callback.call(bowler);
-    }
-
-    @Override
-    protected BowlerStatisticWrapper doInBackground(String... voids) {
-        String name = voids[0];
-        return new BowlerStatisticWrapper(Database.getInstance(context).bowlerDao().getStatistics(name));
+    protected BowlerStatisticWrapper doInBackground(ContextAwareTaskParam<String>[] voids) {
+        ContextAwareTaskParam<String> name = voids[0];
+        return new BowlerStatisticWrapper(Database.getInstance(name.getContext()).bowlerDao().getStatistics(name.getParam()));
     }
 
     public static void loadBowlerStatistics(String name, Context context, Callback<BowlerStatisticWrapper> callback) {
-        new LoadBowlerStatisticsTask(context, callback).execute(name);
+        new LoadBowlerStatisticsTask(callback).execute(new ContextAwareTaskParam<>(context, name));
     }
 }

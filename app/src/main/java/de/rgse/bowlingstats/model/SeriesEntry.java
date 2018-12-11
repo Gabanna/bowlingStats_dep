@@ -17,24 +17,19 @@ public class SeriesEntry implements Comparable<SeriesEntry> {
 
     @PrimaryKey
     @NonNull
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String bowlerId;
     private Date dateTime;
     private int value;
 
     public SeriesEntry(String bowlerId, int value, Date dateTime) {
-        this.id = UUID.randomUUID().toString();
         this.bowlerId = bowlerId;
         this.dateTime = dateTime;
         this.value = value;
     }
 
     public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        return this.id;
     }
 
     public int getValue() {
@@ -49,16 +44,8 @@ public class SeriesEntry implements Comparable<SeriesEntry> {
         return bowlerId;
     }
 
-    public void setBowlerId(String bowlerId) {
-        this.bowlerId = bowlerId;
-    }
-
     public Date getDateTime() {
         return dateTime;
-    }
-
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
     }
 
     @Override

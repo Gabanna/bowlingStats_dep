@@ -1,24 +1,20 @@
 package de.rgse.bowlingstats.tasks;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import de.rgse.bowlingstats.model.SeriesEntry;
 import de.rgse.bowlingstats.persistence.Database;
 
-public class LoadSeriesEntriesTask extends ContextAwareTask<Date, List<SeriesEntry>> {
+public class LoadBowlersCountForDateTask extends ContextAwareTask<Date, Long> {
 
-
-    private LoadSeriesEntriesTask(Callback<List<SeriesEntry>> callback) {
+    private LoadBowlersCountForDateTask(Callback<Long> callback) {
         super(callback);
     }
 
     @Override
-    protected List<SeriesEntry> doInBackground(ContextAwareTaskParam<Date>[] dates) {
+    protected Long doInBackground(ContextAwareTaskParam<Date>[] dates) {
         ContextAwareTaskParam<Date> date = dates[0];
 
         Calendar calendar = Calendar.getInstance();
@@ -35,10 +31,11 @@ public class LoadSeriesEntriesTask extends ContextAwareTask<Date, List<SeriesEnt
 
         Date to = calendar.getTime();
 
-        return Database.getInstance(date.getContext()).seriesDao().getEntriesByDate(from, to);
+        return Database.getInstance(date.getContext()).seriesDao().getBowlerCountByDate(from, to);
     }
 
-    public static void loadSeries(Date date, Context context, Callback<List<SeriesEntry>> callback) {
-        new LoadSeriesEntriesTask(callback).execute(new ContextAwareTaskParam<>(context, date));
+    public static void loadBowlersCountForDate(Date date, Context context, Callback<Long> callback) {
+        new LoadBowlersCountForDateTask(callback).execute(new ContextAwareTaskParam<>(context, date));
     }
+
 }

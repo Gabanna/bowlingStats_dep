@@ -6,7 +6,6 @@ public class BowlerStatistic {
 
     private String name;
     private float average;
-    private int max;
     private int count;
     private Date dateTime;
 
@@ -32,14 +31,6 @@ public class BowlerStatistic {
 
     public void setAverage(float average) {
         this.average = average;
-    }
-
-    public int getMax() {
-        return max;
-    }
-
-    public void setMax(int max) {
-        this.max = max;
     }
 
     public int getCount() {

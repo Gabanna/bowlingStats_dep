@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.rgse.bowlingstats">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,11 +30,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SeriesListActivity"
-            android:label="@string/title_activity_bowlers"
+            android:label="@string/title_activity_series_list"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SeriesActivity"
-            android:label="@string/title_activity_series_"
+            android:label="@string/title_activity_series"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".CreateSeriesActivity"
@@ -41,7 +43,11 @@
         <activity
             android:name=".StatisticBowlerActivity"
             android:label="@string/title_activity_statistic_bowler"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EditSeriesActivity"
+            android:label="@string/title_activity_edit_series"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

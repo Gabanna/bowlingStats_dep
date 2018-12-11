@@ -1,7 +1,6 @@
 package de.rgse.bowlingstats.factories;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;

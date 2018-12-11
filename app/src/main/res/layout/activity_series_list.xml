@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".SeriesListActivity">
 
-    <include layout="@layout/content_series_list" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="top|center" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_series_list" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

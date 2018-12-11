@@ -1,6 +1,8 @@
 package de.rgse.bowlingstats.adapters;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,8 @@ public class BowlersAdapter extends ArrayAdapter<Bowler> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public @NonNull View getView(int position, @Nullable  View convertView, @NonNull ViewGroup parent) {
+        super.getView(position, convertView, parent);
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.bowler_item, parent, false);
@@ -27,8 +30,11 @@ public class BowlersAdapter extends ArrayAdapter<Bowler> {
         }
 
         Bowler bowler = getItem(position);
-        TextView tv = convertView.findViewById(R.id.name);
-        tv.setText(bowler.getName());
+
+        if(bowler != null) {
+            TextView tv = convertView.findViewById(R.id.name);
+            tv.setText(bowler.getName());
+        }
 
         convertView.setTag(position);
         return convertView;

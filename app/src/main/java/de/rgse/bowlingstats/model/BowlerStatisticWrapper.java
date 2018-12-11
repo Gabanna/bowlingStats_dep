@@ -15,15 +15,4 @@ public class BowlerStatisticWrapper {
         return Collections.unmodifiableList(statistic);
     }
 
-    public float calculateOverallAverage() {
-        int count = 0;
-        int value = 0;
-
-        for(BowlerStatistic stat : statistic) {
-            count += stat.getCount();
-            value += (stat.getAverage() * stat.getCount());
-        }
-
-        return count == 0 ?  0 : value / count;
-    }
 }
