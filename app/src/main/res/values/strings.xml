@@ -22,4 +22,5 @@
     <string name="title_activity_create_series">Serie erstellen</string>
     <string name="title_activity_statistic_bowler">Statistiken</string>
     <string name="title_activity_series_list">Serien</string>
+    <string name="all">Alle</string>
 </resources>

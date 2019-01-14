@@ -1,6 +1,7 @@
 package de.rgse.bowlingstats;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +24,7 @@ import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
 
-public class StatisticBowlerActivity extends ToolbarActivity {
+public class StatisticBowlerActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private String name;
@@ -46,7 +47,7 @@ public class StatisticBowlerActivity extends ToolbarActivity {
         int count = 0;
         int value = 0;
 
-        for(int i = 0; i < bowlerStatisticWrapper.getStatistic().size(); i++) {
+        for (int i = 0; i < bowlerStatisticWrapper.getStatistic().size(); i++) {
             BowlerStatistic stat = bowlerStatisticWrapper.getStatistic().get(i);
             count += stat.getCount();
             value += (stat.getAverage() * stat.getCount());

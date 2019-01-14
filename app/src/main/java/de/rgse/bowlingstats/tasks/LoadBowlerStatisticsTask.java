@@ -21,4 +21,8 @@ public class LoadBowlerStatisticsTask extends ContextAwareTask<String, BowlerSta
     public static void loadBowlerStatistics(String name, Context context, Callback<BowlerStatisticWrapper> callback) {
         new LoadBowlerStatisticsTask(callback).execute(new ContextAwareTaskParam<>(context, name));
     }
+
+    public static void loadBowlerStatistics(Context context, Callback<BowlerStatisticWrapper> callback) {
+        new LoadBowlerStatisticsTask(callback).execute(new ContextAwareTaskParam<>(context, null));
+    }
 }

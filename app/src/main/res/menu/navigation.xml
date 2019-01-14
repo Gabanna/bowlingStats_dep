@@ -20,10 +20,10 @@
         app:materialIcon="account_group"
         android:title="@string/bowlers" />
 
-    <item
+    <!--item
         android:id="@+id/navigation_import"
         app:showAsAction="never"
         app:materialIcon="import_icon"
-        android:title="@string/label_import" />
+        android:title="@string/label_import" /-->
 
 </menu>

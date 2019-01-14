@@ -23,4 +23,5 @@
     <string name="title_activity_edit_series">Serie bearbeiten</string>
     <string name="scores">Ergebnisse</string>
     <string name="statistics">Statistiken</string>
+    <string name="all">Alle</string>
 </resources>

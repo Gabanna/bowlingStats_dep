@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -19,7 +20,7 @@ import de.rgse.bowlingstats.adapters.SeriesListAdapter;
 import de.rgse.bowlingstats.factories.FabFactory;
 import de.rgse.bowlingstats.tasks.LoadSeriesTask;
 
-public class SeriesListActivity extends ToolbarActivity {
+public class SeriesListActivity extends AppCompatActivity {
 
     private ListView seriesView;
     private ProgressBar progessBar;

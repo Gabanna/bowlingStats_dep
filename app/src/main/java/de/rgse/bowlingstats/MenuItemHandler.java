@@ -60,10 +60,11 @@ public class MenuItemHandler {
                 }
                 result = true;
                 break;
-            case R.id.navigation_import:
+            /*case R.id.navigation_import:
                 startImport(item.getActionView());
                 result = true;
                 break;
+                */
         }
 
         return result;

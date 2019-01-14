@@ -21,4 +21,5 @@
     <string name="label_import">import</string>
     <string name="show_scores">Show Scores</string>
     <string name="title_activity_bowlers">Manage Bowlers</string>
+    <string name="all">all</string>
 </resources>

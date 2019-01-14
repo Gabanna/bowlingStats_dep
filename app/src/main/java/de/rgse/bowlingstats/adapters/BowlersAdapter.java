@@ -22,7 +22,7 @@ public class BowlersAdapter extends ArrayAdapter<Bowler> {
 
     @Override
     public @NonNull View getView(int position, @Nullable  View convertView, @NonNull ViewGroup parent) {
-        super.getView(position, convertView, parent);
+        //super.getView(position, convertView, parent);
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.bowler_item, parent, false);

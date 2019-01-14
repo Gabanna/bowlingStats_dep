@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import de.rgse.bowlingstats.tasks.LoadBowlersTask;
 
 import static de.rgse.bowlingstats.CreateBowler.CREATE_BOWLER_REQUEST_CODE;
 
-public class BowlersActivity extends ToolbarActivity {
+public class BowlersActivity extends AppCompatActivity {
 
     private ListView bowlersView;
 
