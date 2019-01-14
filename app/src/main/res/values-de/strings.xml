@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BowlingStats</string>
-    <string name="title_home">Home</string>
     <string name="create">Erstellen</string>
     <string name="cancle">Abbrechen</string>
     <string name="name_of_bowler">Name des Bowlers</string>
@@ -15,7 +14,6 @@
     <string name="yes">ja</string>
     <string name="no">nein</string>
     <string name="bowlers">Bowler</string>
-    <string name="title_activity_series_">Series_Activity</string>
     <string name="title_activity_create_series">CreateSeriesActivity</string>
     <string name="score">Ergebnis</string>
     <string name="title_activity_statistic_bowler">Statistiken</string>
@@ -24,4 +22,6 @@
     <string name="scores">Ergebnisse</string>
     <string name="statistics">Statistiken</string>
     <string name="all">Alle</string>
+    <string name="title_activity_series_list">Serien</string>
+    <string name="title_activity_series">Serien</string>
 </resources>
